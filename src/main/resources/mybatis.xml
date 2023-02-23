@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+<!--        日志-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+<!--        开启二级缓存-->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <plugins>
+        <!-- com.github.pagehelper为PageHelper类所在包名 -->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+
+    <environments default="db01">
+        <!-- 配置数据库的连接 -->
+        <environment id="db01">
+            <!-- 事务 -->
+            <transactionManager type="JDBC" />
+            <!-- 配置数据源 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/student_selection_system?serverTimezone=Asia/Shanghai" />
+                <property name="username" value="root" />
+                <property name="password" value="wangjihao20110828" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 加载映射文件  注册 -->
+    <mappers>
+       <mapper class="com.feri.mybatis.dao.TeacherDao"></mapper>
+    </mappers>
+</configuration>
